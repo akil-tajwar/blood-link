@@ -22,7 +22,7 @@ const Navbar = () => {
                                 {menu}
                             </ul>
                         </div>
-                        <p className="text-xl font-semibold">BLood Link</p>
+                        <p className="text-2xl font-semibold">BLood Link</p>
                     </div>
                     <div className="hidden lg:block">{menu}</div>
                     <div className='flex gap-5 items-center'>
