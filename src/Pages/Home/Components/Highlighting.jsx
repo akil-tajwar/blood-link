@@ -6,7 +6,7 @@ import { FaHandHoldingWater } from 'react-icons/fa';
 const Highlighting = () => {
     return (
         <div className='lg:w-3/4 w-11/12 mx-auto pt-20'>
-            <div className='flex gap-10 text-white'>
+            <div className='flex lg:flex-row flex-col gap-10 text-white'>
                 <div className='bg-[#f04d4d] p-10 rounded-lg'>
                     <RiHospitalLine className='text-7xl pb-1' />
                     <h3 className='text-2xl font-semibold pb-5'>Blood Bank</h3>

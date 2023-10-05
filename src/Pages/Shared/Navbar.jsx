@@ -11,14 +11,14 @@ const Navbar = () => {
     )
     return (
         <div className='fixed w-full'>
-            <div className='bg-[#f04d4d] backdrop-blur text-white w-11/12 lg:w-3/4 px-5 mx-auto rounded-lg mt-5'>
+            <div className='backdrop-blur-sm w-11/12 lg:w-3/4 px-5 mx-auto rounded-lg mt-5'>
                 <div className='flex justify-between items-center'>
                     <div className='flex items-center'>
                         <div className="dropdown lg:hidden">
                             <label tabIndex={0} className="btn btn-ghost btn-circle">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
                             </label>
-                            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content text-black bg-base-100 rounded-box w-52">
+                            <ul tabIndex={0} className="mt-3 z-[1] py-3 px-5 shadow menu menu-sm dropdown-content text-black bg-base-100 rounded-box w-52">
                                 {menu}
                             </ul>
                         </div>
