@@ -4,12 +4,6 @@ import { CgProfile } from 'react-icons/cg';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
 
 const Navbar = () => {
-    const isHiding = window.location.pathname === '/login' || window.location.pathname === '/signup';
-
-    if (isHiding) {
-        return null;
-    }
-
     const menu = (
         <ul className='flex lg:flex-row flex-col lg:gap-8 gap-3'>
             <Link to='/'><li>Home</li></Link>
@@ -34,9 +28,7 @@ const Navbar = () => {
                     </div>
                     <div className="hidden lg:block">{menu}</div>
                     <div className='flex gap-5 items-center'>
-                        <div className="">
-                            <input type="text" placeholder="Search" className="w-24 border px-2 py-1 rounded-lg md:w-auto" />
-                        </div>
+                        <Link to='/login'><button className='bg-[#f04d4d] text-white rounded-lg font-semibold px-4 py-1'>Login</button></Link>
                         <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
@@ -45,31 +37,25 @@ const Navbar = () => {
                             </label>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52" >
                                 <li>
-                                    <div>
+                                    <Link to="/profile" className="justify-between">
                                         <div className="flex items-center gap-2">
                                             <CgProfile className="text-lg" />
-                                            <Link to="/profile" className="justify-between">
-                                                Profile
-                                            </Link>
+                                            <p>Profile</p>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <div>
+                                    <Link href="/settings" className="justify-between">
                                         <div className="flex items-center gap-2">
                                             <FiSettings className="text-lg" />
-                                            <Link href="/settings" className="justify-between">
-                                                Settings
-                                            </Link>
+                                            <p>Settings</p>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <div>
-                                        <div className="flex items-center gap-2">
-                                            <FiLogOut className="text-lg" />
-                                            <p>Logout</p>
-                                        </div>
+                                    <div className="flex items-center gap-2">
+                                        <FiLogOut className="text-lg" />
+                                        <p>Logout</p>
                                     </div>
                                 </li>
                             </ul>

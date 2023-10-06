@@ -2,12 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
-    const isHiding = window.location.pathname === '/login' || window.location.pathname === '/signup';
-
-    if (isHiding) {
-        return null;
-    }
-
     return (
         <div className="bg-[#f04d4d] text-white">
             <div className="flex flex-wrap lg:justify-between gap-10 lg:flex-row py-5 w-11/12 lg:w-3/4 mx-auto text-lg">

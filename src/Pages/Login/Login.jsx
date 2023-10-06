@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+    const handleLogin = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+    }
     return (
         <div className='pt-52'>
             <div className='mx-auto w-fit border-[#f04d4d] border p-8 mt-20 mb-4'>
