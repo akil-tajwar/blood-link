@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
+import { AuthContext } from '../../providers/AuthProviders';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {})
+        .catch(error => console.log(error))
+    }
     const menu = (
         <ul className='flex lg:flex-row flex-col lg:gap-8 gap-3'>
             <Link to='/'><li>Home</li></Link>
@@ -28,38 +36,39 @@ const Navbar = () => {
                     </div>
                     <div className="hidden lg:block">{menu}</div>
                     <div className='flex gap-5 items-center'>
-                        <Link to='/login'><button className='bg-[#f04d4d] text-white rounded-lg font-semibold px-4 py-1'>Login</button></Link>
-                        <div className="dropdown dropdown-end">
-                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                                </div>
-                            </label>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52" >
-                                <li>
-                                    <Link to="/profile" className="justify-between">
-                                        <div className="flex items-center gap-2">
-                                            <CgProfile className="text-lg" />
-                                            <p>Profile</p>
-                                        </div>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/settings" className="justify-between">
-                                        <div className="flex items-center gap-2">
-                                            <FiSettings className="text-lg" />
-                                            <p>Settings</p>
-                                        </div>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <div className="flex items-center gap-2">
-                                        <FiLogOut className="text-lg" />
-                                        <p>Logout</p>
+                        {
+                            user ? <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
+                                </label>
+                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52" >
+                                    <li>
+                                        <Link to="/profile" className="justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <CgProfile className="text-lg" />
+                                                <p>Profile</p>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/settings" className="justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <FiSettings className="text-lg" />
+                                                <p>Settings</p>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <div className="flex items-center gap-2">
+                                            <FiLogOut className="text-lg" />
+                                            <p>Logout</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div> : <Link to='/login'><button className='bg-[#f04d4d] text-white rounded-lg font-semibold px-4 py-1'>Login</button></Link>
+                        }
                     </div>
                 </div>
             </div>

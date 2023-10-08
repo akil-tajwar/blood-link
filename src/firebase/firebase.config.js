@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.Vite_apiKey,
-  authDomain: import.meta.env.Vite_authDomain,
-  projectId: import.meta.env.Vite_projectId,
-  storageBucket: import.meta.env.Vite_storageBucket,
-  messagingSenderId: import.meta.env.Vite_messagingSenderId,
-  appId: import.meta.env.Vite_appId
+  apiKey: "AIzaSyAXzmZXEHRU_aGqlHbpicTdW9zWX1iwP3Q",
+  authDomain: "blood-link-c1ce2.firebaseapp.com",
+  projectId: "blood-link-c1ce2",
+  storageBucket: "blood-link-c1ce2.appspot.com",
+  messagingSenderId: "788359049832",
+  appId: "1:788359049832:web:78bb839c27e420386541dd",
 };
 
 // Initialize Firebase

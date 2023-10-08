@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProviders';
 
 const Signup = () => {
+    const { register, handleSubmit, formState: { errors }} = useForm();
+    const {createUser} = useContext(AuthContext);
+
+    const onSubmit = (data) => {
+        console.log(data);
+        createUser(data.email, data.password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+    }
     return (
         <div className='pt-52'>
             <div className='mx-auto w-fit border-[#f04d4d] border p-8 mt-20 mb-4'>
                 <h2 className='text-4xl text-center text-[#f04d4d] font-semibold mb-3'>Signup</h2>
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='pb-2'>
                         <label htmlFor="email">Name</label><br />
-                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="text" name="name" id="" required />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="text" name="name" {...register("name")} id="" required />
                     </div>
                     <div className='pb-2'>
                         <label htmlFor="email">Email</label><br />
-                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="email" name="email" id="" required />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="email" name="email" {...register("email")} id="" required />
                     </div>
                     <div className='pb-2'>
                         <label htmlFor="password">Password</label><br />
-                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="password" name="password" id="" required />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="password" name="password" {...register("password")} id="" required />
                     </div>
                     <div className='pb-2'>
                         <label htmlFor="email">Photo URL</label><br />
