@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProviders';
 
 const Login = () => {
     const {signin, signinWithGoogle} = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleLogin = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -14,17 +15,19 @@ const Login = () => {
             const user = result.user;
             console.log(user);
         })
+        navigate('/');
     }
 
     const handleGoogleLogin = () => {
         signinWithGoogle();
+        navigate('/');
     }
 
     return (
         <div className='pt-52'>
             <div className='mx-auto w-fit border-[#f04d4d] border p-8 mt-20 mb-4'>
                 <h2 className='text-4xl text-center font-semibold mb-3 text-[#f04d4d]'>Login</h2>
-                <form>
+                <form onSubmit={handleLogin}>
                     <div className='pb-2'>
                         <label htmlFor="email">Email</label><br />
                         <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="email" name="email" id="" required />
@@ -33,7 +36,7 @@ const Login = () => {
                         <label htmlFor="password">Password</label><br />
                         <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="password" name="password" id="" required />
                     </div>
-                    <button onClick={handleLogin} className='w-full bg-[#f04d4d] text-white font-semibold p-2 mt-4 mb-3'>Login</button><br />
+                    <button className='w-full bg-[#f04d4d] text-white font-semibold p-2 mt-4 mb-3'>Login</button><br />
                 </form>
                 <p className='text-center'>--------- or ---------</p>
                 <div className='flex gap-2 mb-3'>

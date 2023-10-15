@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProviders';
 
 const Signup = () => {
     const { register, handleSubmit, formState: { errors }} = useForm();
-    const {createUser} = useContext(AuthContext);
+    const {createUser, logOut} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         console.log(data);
@@ -13,6 +14,8 @@ const Signup = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
+            logOut();
+            navigate('/login');
         })
     }
     return (
