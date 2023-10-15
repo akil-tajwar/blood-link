@@ -34,7 +34,7 @@ const Signup = () => {
                     </div>
                     <div className='pb-2'>
                         <label htmlFor="email">Photo URL</label><br />
-                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="text" name="photo" id="" required />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="file" name="photo" id="" required />
                     </div>
                     <button className='w-full bg-[#f04d4d] text-white font-semibold p-2 mt-4 mb-3'>Signup</button><br />
                 </form>
