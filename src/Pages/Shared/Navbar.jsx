@@ -21,7 +21,7 @@ const Navbar = () => {
     )
     return (
         <div className='fixed w-full z-10'>
-            <div className='backdrop-blur-sm w-11/12 lg:w-3/4 px-2 mx-auto rounded-lg mt-5'>
+            <div className='backdrop-blur-sm shadow w-11/12 lg:w-3/4 px-2 mx-auto rounded-lg mt-5'>
                 <div className='flex justify-between items-center'>
                     <div className='flex items-center'>
                         <div className="dropdown lg:hidden">
@@ -35,9 +35,9 @@ const Navbar = () => {
                         <p className="text-2xl font-semibold">BLood Link</p>
                     </div>
                     <div className="hidden lg:block">{menu}</div>
-                    <div className='flex gap-5 items-center'>
+                    <div className=''>
                         {
-                            user ? <div className="dropdown dropdown-end">
+                            user ? <div className="dropdown pt-1 dropdown-end">
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                     <div className="w-16 rounded-full border-2 border-[#f04d4d]">
                                         <img src={user.photoURL} />
