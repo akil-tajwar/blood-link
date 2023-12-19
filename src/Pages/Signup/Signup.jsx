@@ -11,26 +11,38 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        console.log(data);
-
         const formData = new FormData();
-        formData.append('image', data.image[0]);
+        formData.append('image', data.photoURL[0]); // Assuming photoURL is the input for the image
+    
         fetch(img_hosting_url, {
             method: 'POST',
             body: formData
         })
-            .then(res => res.json())
-            .then(imgResponse => {
-                console.log(imgResponse);
-            })
-
-        createUser(data.email, data.password, data.photoURL)
-            .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser);
-                logOut();
-                navigate('/login');
-            })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Image upload failed');
+            }
+            return res.json();
+        })
+        .then(imgResponse => {
+            // Handle the response from ImgBB here
+            console.log('Image uploaded:', imgResponse);
+            
+            // Once the image is uploaded, proceed with creating the user
+            createUser(data.email, data.password, imgResponse.url)
+                .then(result => {
+                    const loggedUser = result.user;
+                    console.log('User created:', loggedUser);
+                    logOut();
+                    navigate('/login');
+                })
+                .catch(error => {
+                    console.error('Error creating user:', error);
+                });
+        })
+        .catch(error => {
+            console.error('Image upload error:', error);
+        });
     }
     return (
         <div className='lg:pt-40 pt-20'>
