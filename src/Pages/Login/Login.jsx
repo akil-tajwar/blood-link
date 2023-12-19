@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProviders';
 
 const Login = () => {
-    const {signin, signinWithGoogle} = useContext(AuthContext);
+    const {user, signin, signinWithGoogle} = useContext(AuthContext);
     const navigate = useNavigate();
     const handleLogin = (event) => {
         event.preventDefault();
@@ -15,17 +15,18 @@ const Login = () => {
             const user = result.user;
             console.log(user);
         })
-        navigate('/');
+        user && navigate('/');
     }
 
     const handleGoogleLogin = () => {
         signinWithGoogle();
-        navigate('/');
+        user && navigate('/');
     }
 
     return (
-        <div className='pt-52'>
-            <div className='mx-auto w-fit border-[#f04d4d] border p-8 mt-20 mb-4'>
+        <div className='lg:pt-40 pt-20'>
+            <Link to='/'><h1 className='text-[#f04d4d] text-center text-4xl font-semibold'>Blood Link</h1></Link>
+            <div className='mx-auto w-fit border-[#f04d4d] border p-8 mt-10 mb-4'>
                 <h2 className='text-4xl text-center font-semibold mb-3 text-[#f04d4d]'>Login</h2>
                 <form onSubmit={handleLogin}>
                     <div className='pb-2'>
