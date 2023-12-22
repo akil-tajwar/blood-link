@@ -31,11 +31,11 @@ const Login = () => {
                 <form onSubmit={handleLogin}>
                     <div className='pb-2'>
                         <label htmlFor="email">Email</label><br />
-                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="email" name="email" id="" required />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="email" name="email" required />
                     </div>
                     <div className='pb-2'>
                         <label htmlFor="password">Password</label><br />
-                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="password" name="password" id="" required />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="password" name="password" required />
                     </div>
                     <button className='w-full bg-[#f04d4d] text-white font-semibold p-2 mt-4 mb-3'>Login</button><br />
                 </form>

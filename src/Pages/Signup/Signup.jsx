@@ -15,51 +15,58 @@ const Signup = () => {
         const name = form.name.value;
         const email = form.email.value;
 
-        const newUser = {name, email};
-        fetch('http://localhost:5000/users', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newUser)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-        })
-
         const formData = new FormData();
-        formData.append('image', data.photoURL[0]); // Assuming photoURL is the input for the image
-    
+        formData.append('image', data.photoURL[0]);
+
         fetch(img_hosting_url, {
             method: 'POST',
             body: formData
         })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error('Image upload failed');
-            }
-            return res.json();
-        })
-        .then(imgResponse => {
-            // Handle the response from ImgBB here
-            console.log('Image uploaded:', imgResponse);
-            
-            // Once the image is uploaded, proceed with creating the user
-            createUser(data.email, data.password, imgResponse.url)
-                .then(result => {
-                    const loggedUser = result.user;
-                    console.log('User created:', loggedUser);
-                    logOut();
-                    navigate('/login');
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Image upload failed');
+                }
+                return res.json();
+            })
+            .then(imgResponse => {
+                // Handle the response from ImgBB here
+                console.log('Image uploaded:', imgResponse.data.display_url);
+
+                const userDataWithImage = {
+                    name, email,
+                    image: imgResponse.data.display_url
+                };
+
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userDataWithImage)
                 })
-                .catch(error => {
-                    console.error('Error creating user:', error);
-                });
-        })
-        .catch(error => {
-            console.error('Image upload error:', error);
-        });
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+                // Once the image is uploaded, proceed with creating the user
+                createUser(data.email, data.password)
+                    .then(result => {
+                        const loggedUser = result.user;
+                        console.log(loggedUser);
+                        logOut();
+                        navigate('/login');
+                    })
+                    .catch(error => {
+                        console.error('Error creating user:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Image upload error:', error);
+            });
     }
     return (
         <div className='lg:pt-40 pt-20'>
@@ -69,19 +76,19 @@ const Signup = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='pb-2'>
                         <label htmlFor="email">Name</label><br />
-                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="text" name="name" {...register("name")} id="" required />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="text" name="name" {...register("name")} required />
                     </div>
                     <div className='pb-2'>
                         <label htmlFor="email">Email</label><br />
-                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="email" name="email" {...register("email")} id="" required />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="email" name="email" {...register("email")} required />
                     </div>
                     <div className='pb-2'>
                         <label htmlFor="password">Password</label><br />
-                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="password" name="password" {...register("password")} id="" required />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="password" name="password" {...register("password")} required />
                     </div>
                     <div className='pb-2'>
                         <label htmlFor="email">Photo</label><br />
-                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="file" name="photoURL" {...register("photoURL")} id="" required />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-72' type="file" name="photoURL" {...register("photoURL")} required />
                     </div>
                     <button className='w-full bg-[#f04d4d] text-white font-semibold p-2 mt-4 mb-3'>Signup</button><br />
                 </form>
