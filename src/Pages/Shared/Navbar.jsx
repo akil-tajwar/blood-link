@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
@@ -6,11 +6,22 @@ import { AuthContext } from '../../providers/AuthProviders';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [userData, setUserData] = useState([]);
+
+    useEffect(() => {
+        const url = `http://localhost:5000/users`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                setUserData(data);
+                console.log(data);
+            })
+    }, [])
 
     const handleLogOut = () => {
         logOut()
-        .then(() => {})
-        .catch(error => console.log(error))
+            .then(() => { })
+            .catch(error => console.log(error))
     }
     const menu = (
         <ul className='flex lg:flex-row flex-col lg:gap-8 gap-3'>
@@ -33,6 +44,11 @@ const Navbar = () => {
                             </ul>
                         </div>
                         <p className="text-2xl font-semibold">BLood Link</p>
+                        {
+                            userData.map(item => <div item={item} key={item._id}>
+                                <p>{item.email}</p>
+                            </div>)
+                        }
                     </div>
                     <div className="hidden lg:block">{menu}</div>
                     <div className=''>
