@@ -30,6 +30,19 @@ const Navbar = () => {
             <Link><li>FAQ</li></Link>
         </ul>
     )
+
+    let userEmailComponent;
+    const foundUser = userData.find(item => item?.email === user?.email);
+    if (foundUser) {
+        userEmailComponent = foundUser?.map(item => (
+            <div item={item} key={item._id}>
+                <p>{item.email}</p>
+            </div>
+        ));
+    } else {
+        userEmailComponent = <div>user not found</div>;
+    }
+
     return (
         <div className='fixed w-full z-10'>
             <div className='backdrop-blur-sm py-2 shadow w-11/12 lg:w-3/4 px-2 mx-auto rounded-lg mt-5'>
@@ -44,11 +57,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                         <p className="text-2xl font-semibold">BLood Link</p>
-                        {
-                            userData.map(item => <div item={item} key={item._id}>
-                                <p>{item.email}</p>
-                            </div>)
-                        }
+                        {foundUser ? userEmailComponent : <div>user not found</div>}
                     </div>
                     <div className="hidden lg:block">{menu}</div>
                     <div className=''>
