@@ -33,8 +33,8 @@ const Navbar = () => {
 
     let userEmailComponent;
     const foundUser = userData.find(item => item?.email === user?.email);
-    if (foundUser) {
-        userEmailComponent = foundUser?.map(item => (
+    if (Array.isArray(foundUser)) {
+        userEmailComponent = foundUser.map(item => (
             <div item={item} key={item._id}>
                 <p>{item.email}</p>
             </div>
