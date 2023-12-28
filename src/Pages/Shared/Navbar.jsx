@@ -39,10 +39,8 @@ const Navbar = () => {
                 <p>{item.email}</p>
             </div>
         ));
-    } else {
-        userEmailComponent = <div>user not found</div>;
     }
-
+    
     return (
         <div className='fixed w-full z-10'>
             <div className='backdrop-blur-sm py-2 shadow w-11/12 lg:w-3/4 px-2 mx-auto rounded-lg mt-5'>
