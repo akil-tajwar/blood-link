@@ -7,16 +7,23 @@ import { AuthContext } from '../../providers/AuthProviders';
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [userData, setUserData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    // console.log(user);
 
     useEffect(() => {
-        const url = `http://localhost:5000/users`;
+        const url = `http://localhost:5000/users?email=${user?.email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 setUserData(data);
+                setIsLoading(false)
                 console.log(data);
             })
-    }, [])
+            .catch(error => {
+                setIsLoading(false);
+                console.log(error);
+            });
+    }, [user])
 
     const handleLogOut = () => {
         logOut()
@@ -31,16 +38,16 @@ const Navbar = () => {
         </ul>
     )
 
-    let userEmailComponent;
-    const foundUser = userData.find(item => item?.email === user?.email);
-    if (Array.isArray(foundUser)) {
-        userEmailComponent = foundUser.map(item => (
-            <div item={item} key={item._id}>
-                <p>{item.email}</p>
-            </div>
-        ));
-    }
-    
+    // let userEmailComponent;
+    // const foundUser = userData.find(item => item?.email === user?.email);
+    // if (Array.isArray(foundUser)) {
+    //     userEmailComponent = foundUser.map(item => (
+    //         <div item={item} key={item._id}>
+    //             <p>{item.email}</p>
+    //         </div>
+    //     ));
+    // }
+
     return (
         <div className='fixed w-full z-10'>
             <div className='backdrop-blur-sm py-2 shadow w-11/12 lg:w-3/4 px-2 mx-auto rounded-lg mt-5'>
@@ -55,7 +62,6 @@ const Navbar = () => {
                             </ul>
                         </div>
                         <p className="text-2xl font-semibold">BLood Link</p>
-                        {foundUser ? userEmailComponent : <div>user not found</div>}
                     </div>
                     <div className="hidden lg:block">{menu}</div>
                     <div className=''>
@@ -63,7 +69,11 @@ const Navbar = () => {
                             user ? <div className="dropdown pt-1 dropdown-end">
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                     <div className="w-16 rounded-full border-2 border-[#f04d4d]">
-                                        <img src={user.photoURL} />
+                                        {isLoading ? (
+                                            <p>Loading...</p>
+                                        ) : (
+                                            <img src={userData.length > 0 ? userData[0].image : user.photoURL} alt="User" />
+                                        )}
                                     </div>
                                 </label>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52" >
