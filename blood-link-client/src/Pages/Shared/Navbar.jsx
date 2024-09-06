@@ -31,8 +31,10 @@ const Navbar = () => {
             .catch(error => console.log(error))
     }
     const menu = (
-        <ul className='flex lg:flex-row flex-col lg:gap-8 gap-3'>
+        <ul className='flex font-semibold lg:flex-row flex-col lg:gap-8 gap-3'>
             <Link to='/'><li>Home</li></Link>
+            <Link to='/'><li>Donate Blood</li></Link>
+            <Link to='/'><li>Find Doners</li></Link>
             <Link to='/blogs'><li>Blog</li></Link>
             <Link><li>FAQ</li></Link>
         </ul>
@@ -50,7 +52,7 @@ const Navbar = () => {
 
     return (
         <div className='fixed w-full z-10'>
-            <div className='backdrop-blur-sm py-2 shadow w-11/12 lg:w-3/4 px-2 mx-auto rounded-lg mt-5'>
+            <div className='backdrop-blur-sm bg-[#f04d4d] text-white p-2 lg:p-4 shadow w-11/12 lg:w-3/4 mx-auto rounded-lg mt-5'>
                 <div className='flex justify-between items-center'>
                     <div className='flex items-center'>
                         <div className="dropdown lg:hidden">
@@ -100,7 +102,7 @@ const Navbar = () => {
                                         </div>
                                     </li>
                                 </ul>
-                            </div> : <Link to='/login'><button className='bg-[#f04d4d] text-white rounded-lg font-semibold px-4 py-1'>Login</button></Link>
+                            </div> : <Link to='/login'><button className='bg-white text-black rounded-lg font-semibold px-4 py-1'>Login</button></Link>
                         }
                     </div>
                 </div>

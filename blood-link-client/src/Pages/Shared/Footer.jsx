@@ -57,7 +57,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-[#f04d4d] text-white text-md py-2">
+            <div className="bg-[#ca3e3e] text-white text-md py-2">
                 <p className="text-center">Copyright © 2023 - All right reserved by Blood Link</p>
             </div>
         </div>

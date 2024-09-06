@@ -10,7 +10,9 @@ const Main = () => {
     return (
         <div>
             {shouldRenderNavbarAndFooter && <Navbar />}
-            <Outlet />
+            <div className='min-h-[79vh]'>
+                <Outlet />
+            </div>
             {shouldRenderNavbarAndFooter && <Footer />}
         </div>
     );

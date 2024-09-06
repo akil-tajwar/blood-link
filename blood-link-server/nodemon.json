@@ -1,0 +1,11 @@
+{
+    "watch": [
+        "*.js",
+        "controllers/",
+        "models/"
+    ],
+    "ext": "js,json",
+    "ignore": [
+        "node_modules/"
+    ]
+}
