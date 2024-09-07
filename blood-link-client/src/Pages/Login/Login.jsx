@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../providers/AuthProviders';
+import useAuthContext from '../../hooks/useAuthContext';
 
 const Login = () => {
-    const {user, signin, signinWithGoogle} = useContext(AuthContext);
+    const { user } = useAuthContext();
     const navigate = useNavigate();
     const handleLogin = (event) => {
         event.preventDefault();

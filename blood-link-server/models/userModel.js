@@ -6,24 +6,29 @@ const userSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: true
         },
         email: {
             type: String,
-            required: true,
             unique: true,
         },
         phone: {
             type: String,
-            required: true,
             unique: true,
+        },
+        image: {
+            type: String,
+        },
+        city: {
+            type: String,
+        },
+        location: {
+            type: String,
         },
         password: {
             type: String,
         },
         bloodGroup: {
             type: String,
-            required: true
         },
         bio: {
             type: String
@@ -42,7 +47,7 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-userSchema.statics.signup = async function (name, email, phone, password, bloodGroup, bio, lastDonate, role, isverified) {
+userSchema.statics.signup = async function (name, email, bloodGroup, password, role, isverified) {
     console.log('asdfkah', email, name);
     const exist = await this.findOne({ email });
     if (exist) {
@@ -66,14 +71,14 @@ userSchema.statics.signup = async function (name, email, phone, password, bloodG
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
 
-        const user = await this.create({ name, email, phone, password: hash, bloodGroup, bio, lastDonate, role, isverified });
+        const user = await this.create({ name, email, bloodGroup, password: hash, role, isverified });
         console.log("🚀 ~ user:", user)
 
         return user;
     }
 
     else {
-        const user = await this.create({ name, email, phone, password, bloodGroup, bio, lastDonate, role, isverified });
+        const user = await this.create({ name, email, bloodGroup, password, role, isverified });
         return user;
     }
 };

@@ -8,13 +8,13 @@ const createToken = (_id) => {
     return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' });
 }
 
-const singupUser = async (req, res) => {
+const signup = async (req, res) => {
     // console.log("AOAOAO",req.body)
     console.log("AP=>", req.body)
-    const { name, email, phone, password, bloodGroup, bio, lastDonate, role } = req.body;
+    const { name, email, bloodGroup, password, role } = req.body;
     const isverified = false;
     try {
-        const user = await userModel.signup(name, email, phone, password, bloodGroup, bio, lastDonate, role, isverified);
+        const user = await userModel.signup(name, email, bloodGroup, password, role, isverified);
 
         const token = createToken(user._id);
 
@@ -26,7 +26,7 @@ const singupUser = async (req, res) => {
     }
 }
 
-const loginUser = async (req, res) => {
+const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await userModel.login(email, password);
@@ -164,8 +164,8 @@ const changePasswordFromForgotPassword = async (req, res) => {
 };
 
 module.exports = {
-    singupUser,
-    loginUser,
+    signup,
+    login,
     getAllUser,
     getSingleUser,
     updateUser,

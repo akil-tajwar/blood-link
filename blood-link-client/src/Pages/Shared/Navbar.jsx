@@ -2,34 +2,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
-import { AuthContext } from '../../providers/AuthProviders';
+import useAuthContext from "../../hooks/useAuthContext";
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user } = useAuthContext();
     const [userData, setUserData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     // console.log(user);
 
-    useEffect(() => {
-        const url = `http://localhost:5000/users?email=${user?.email}`;
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                setUserData(data);
-                setIsLoading(false)
-                console.log(data);
-            })
-            .catch(error => {
-                setIsLoading(false);
-                console.log(error);
-            });
-    }, [user])
-
-    const handleLogOut = () => {
-        logOut()
-            .then(() => { })
-            .catch(error => console.log(error))
-    }
+    
     const menu = (
         <ul className='flex font-semibold lg:flex-row flex-col lg:gap-8 gap-3'>
             <Link to='/'><li>Home</li></Link>
@@ -39,16 +20,6 @@ const Navbar = () => {
             <Link><li>FAQ</li></Link>
         </ul>
     )
-
-    // let userEmailComponent;
-    // const foundUser = userData.find(item => item?.email === user?.email);
-    // if (Array.isArray(foundUser)) {
-    //     userEmailComponent = foundUser.map(item => (
-    //         <div item={item} key={item._id}>
-    //             <p>{item.email}</p>
-    //         </div>
-    //     ));
-    // }
 
     return (
         <div className='fixed w-full z-10'>
@@ -96,7 +67,7 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                     <li>
-                                        <div onClick={handleLogOut} className="flex items-center gap-2">
+                                        <div className="flex items-center gap-2">
                                             <FiLogOut className="text-lg" />
                                             <p>Logout</p>
                                         </div>
