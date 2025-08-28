@@ -1,19 +1,21 @@
 import { useState } from "react";
-import useAuth from "./useAuthContext";
+import { useNavigate } from "react-router-dom";
+import useAuthContext from "./useAuthContext";
 
 export const useSignup = () => {
-    const [error, setError] = useState(null);
-    const { dispatch } = useAuth();
+    const navigate = useNavigate();
+    const [error,setError]=useState(null);
+    const {dispatch}=useAuthContext();
 
-    const signup=async(name, email, bloodGroup, password, role)=>{
+    const signup=async(name, email, phone, bloodGroup, password, role)=>{
         setError(null);
 
-        console.log("AP=>",name, email, bloodGroup, password, role)
+        console.log("AP=>",name, email, phone, bloodGroup, password, role)
 
         const response=await fetch("http://localhost:4000/api/user/signup",{
             method:'POST',
             headers:{'content-type':'application/json'},
-            body:JSON.stringify({name, email, bloodGroup, password, role})
+            body:JSON.stringify({name, email, phone, bloodGroup, password, role})
         })
 
         const json=await response.json();
@@ -26,15 +28,11 @@ export const useSignup = () => {
             localStorage.setItem('user',JSON.stringify(json));
 
             dispatch({type:'LOGIN',payload:json})
-            if(json?.user?.role === 'school-owner') {
+            if(json?.user?.role === 'user') {
                 navigate('/dashboard')
-            }
-            else if(json?.user?.role === 'teacher') {
-                navigate('/teacherDashboard/profile')
             }
 
         }
     }
-
     return { signup, error };
 };

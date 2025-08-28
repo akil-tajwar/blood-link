@@ -9,22 +9,17 @@ const createToken = (_id) => {
 }
 
 const signup = async (req, res) => {
-    // console.log("AOAOAO",req.body)
-    console.log("AP=>", req.body)
-    const { name, email, bloodGroup, password, role } = req.body;
-    const isverified = false;
+    console.log("AP=>", req.body);
     try {
-        const user = await userModel.signup(name, email, bloodGroup, password, role, isverified);
-
-        const token = createToken(user._id);
-
-        // await sendWelcomeEmail(email, firstname)
-
-        res.status(200).json({ user, token });
+      const user = await userModel.signup(req.body);
+  
+      const token = createToken(user._id);
+      res.status(200).json({ user, token });
     } catch (error) {
-        res.status(400).json({ error: error.message });
+      res.status(400).json({ error: error.message });
     }
-}
+  };
+  
 
 const login = async (req, res) => {
     const { email, password } = req.body;

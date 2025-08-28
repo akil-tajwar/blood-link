@@ -10,9 +10,9 @@ const Signup = () => {
     // const img_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${img_hosting_token}`;
 
     const onSubmit = async (data) => {
-        const { name, email, bloodGroup, password } = data;
+        const { name, email, phone, bloodGroup, password } = data;
         const role = 'user';
-        await signup(name, email, bloodGroup, password, role);
+        await signup(name, email, phone, bloodGroup, password, role);
     };
     return (
         <div className='lg:pt-40 pt-20'>
@@ -27,6 +27,10 @@ const Signup = () => {
                     <div className='pb-2'>
                         <label htmlFor="email">Email</label><br />
                         <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-full' type="email" name="email" {...register("email")} required />
+                    </div>
+                    <div className='pb-2'>
+                        <label htmlFor="email">Phone</label><br />
+                        <input className='bg-[#f5f5f5] p-2 border-slate-300 border w-full' type="number" name="phone" {...register("phone")} required />
                     </div>
                     <div className='pb-2'>
                         <label htmlFor="bloodGroup">Blood Group</label><br />
