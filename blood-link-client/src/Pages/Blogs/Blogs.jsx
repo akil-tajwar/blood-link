@@ -11,7 +11,7 @@ const Blogs = () => {
         <div className='lg:w-3/4 w-11/12 mx-auto pt-32'>
             <h1 className='text-3xl text-center font-semibold'>Blogs</h1>
             <div className='grid grid-cols-3 gap-5 py-12'>
-                {allBlogs.map(blog => <div className='border-2 border-[#f04d4d] rounded-md p-3' blog={blog} key={blog._id}>
+                {allBlogs.map(blog => <div className='border-2 border-red-500 rounded-md p-3' blog={blog} key={blog._id}>
                     <div className='w-full h-[250px] overflow-hidden object-cover rounded-md'>
                         <img src={blog.image} alt="" />
                     </div>
