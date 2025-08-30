@@ -30,9 +30,9 @@ app.get("/", async (req, res) => {
   res.send("working server blood link");
 });
 
-const url = `mongodb+srv://akiltajwar:A248621537590a@cluster0.hhhwk.mongodb.net/blood-link?retryWrites=true&w=majority&appName=Cluster0`;
+
 mongoose
-  .connect(url)
+  .connect(process.env.DB_URL)
   .then(() => {
     // listen for request
     console.log("Successfully Connected to DB");
@@ -43,5 +43,3 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
-
-  // mongodb+srv://akiltajwar:A248621537590a@cluster0.hhhwk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

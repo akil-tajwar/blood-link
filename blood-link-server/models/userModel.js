@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    country: {
+      type: String,
+    },
     city: {
       type: String,
     },
@@ -39,7 +42,7 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
     },
-    isverified: {
+    isAvailable: {
       type: Boolean,
       default: false,
     },
