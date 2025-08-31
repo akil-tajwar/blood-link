@@ -17,10 +17,10 @@ const Navbar = () => {
       <Link to="/" className="hover:text-yellow-300 transition duration-300">
         <li>Home</li>
       </Link>
-      <Link to="/" className="hover:text-yellow-300 transition duration-300">
+      <Link to="/donateBlood" className="hover:text-yellow-300 transition duration-300">
         <li>Donate Blood</li>
       </Link>
-      <Link to="/" className="hover:text-yellow-300 transition duration-300">
+      <Link to="/findDoners" className="hover:text-yellow-300 transition duration-300">
         <li>Find Donors</li>
       </Link>
     </ul>
@@ -94,7 +94,7 @@ const Navbar = () => {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="menu text-black font-medium menu-sm dropdown-content mt-3 z-[1] p-3 shadow-lg bg-white/95 rounded-2xl w-52 space-y-2"
+                  className="menu text-black menu-sm dropdown-content mt-3 z-[1] p-3 shadow-lg bg-white/95 rounded-2xl w-52 space-y-2"
                 >
                   <li>
                     <Link
@@ -124,7 +124,7 @@ const Navbar = () => {
               </div>
             ) : (
               <Link to="/login">
-                <button className="bg-yellow-300 text-black rounded-full font-semibold px-5 py-2 shadow-md hover:bg-white hover:text-red-600 transition">
+                <button className="bg-white text-red-500 hover:bg-gray-200  rounded-full font-semibold px-5 py-2 shadow-md transition">
                   Login
                 </button>
               </Link>
