@@ -76,7 +76,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-20">
+      <div className="w-11/12 lg:w-3/4 mx-auto px-4 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
           <div className="relative">
             <img
@@ -151,7 +151,7 @@ const Home = () => {
       </div>
 
       <div className="bg-gradient-to-r from-red-500/5 to-red-500/5 py-20">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="w-11/12 lg:w-3/4 mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-red-500 mb-4">
               Why Choose Us?
@@ -207,7 +207,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-20">
+      <div className="w-11/12 lg:w-3/4 mx-auto px-4 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <div className="bg-gradient-to-br from-red-500/10 to-red-500/10 p-8 rounded-2xl">
