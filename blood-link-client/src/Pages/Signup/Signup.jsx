@@ -16,8 +16,12 @@ import {
   MdBloodtype,
   MdOutlineLocationOn,
   MdOutlineDateRange,
+  MdFilterVintage,
 } from "react-icons/md";
-import { FaGlobeAsia, FaCity } from "react-icons/fa";
+import { FaGlobeAsia, FaCity, FaStreetView } from "react-icons/fa";
+import { ImProfile } from "react-icons/im";
+import { TbHeartDiscount } from "react-icons/tb";
+import { IoMdHome } from "react-icons/io";
 
 const Signup = () => {
   const { signup } = useSignup();
@@ -41,6 +45,14 @@ const Signup = () => {
       data.email,
       data.phone,
       data.bloodGroup,
+      data.image[0],
+      data.country,
+      data.city,
+      data.location,
+      data.bio,
+      data.lastDonate,
+      data.donations,
+      data.age,
       data.password,
       role
     );
@@ -54,7 +66,7 @@ const Signup = () => {
     <div className="min-h-screen bg-[url(flower.jpg)] w-full overflow-hidden bg-fixed">
       <div className="relative z-10 flex flex-col bg-red-50 bg-opacity-60 items-center justify-center min-h-screen px-4 py-12">
         {/* Logo/Header */}
-        <div className="mb-6 text-center">
+        {/* <div className="mb-6 ">
           <Link to="/">
             <div className="flex items-center justify-center gap-2 mb-2">
               <div className="relative">
@@ -69,7 +81,11 @@ const Signup = () => {
               Connecting lives, saving futures
             </p>
           </Link>
-        </div>
+        </div> */}
+        <Link to={'/'} className="flex justify-center items-center gap-2 text-2xl pb-5 text-red-500 font-bold">
+          <IoMdHome />
+          <p>Home</p>
+        </Link>
 
         {/* Signup Card */}
         <div className="w-full max-w-lg">
@@ -242,17 +258,14 @@ const Signup = () => {
                 <div className="space-y-5">
                   {/* Profile Photo */}
                   <div className="relative group">
-                    {" "}
                     <label className="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-red-500">
-                      {" "}
-                      Profile Photo{" "}
-                    </label>{" "}
+                      Profile Photo
+                    </label>
                     <div className="relative">
-                      {" "}
                       <AiOutlineCamera
                         className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-red-500 transition-colors"
                         size={20}
-                      />{" "}
+                      />
                       <input
                         className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:bg-white focus:outline-none transition-all duration-300 hover:border-gray-300 file:mr-4 file:py-1 file:px-2 file:rounded-full file:border-0 file:text-sm file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
                         type="file"
@@ -261,29 +274,25 @@ const Signup = () => {
                           required: "Profile photo is required",
                         })}
                         accept="image/*"
-                      />{" "}
-                    </div>{" "}
+                      />
+                    </div>
                     {errors.image && (
                       <p className="text-red-500 text-sm mt-1">
-                        {" "}
-                        {errors.image.message}{" "}
+                        {errors.image.message}
                       </p>
-                    )}{" "}
+                    )}
                   </div>
 
                   {/* Blood Group */}
                   <div className="relative group">
-                    {" "}
                     <label className="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-red-500">
-                      {" "}
-                      Blood Group{" "}
-                    </label>{" "}
+                      Blood Group
+                    </label>
                     <div className="relative">
-                      {" "}
                       <MdBloodtype
                         className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-red-500 transition-colors"
                         size={20}
-                      />{" "}
+                      />
                       <select
                         className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:bg-white focus:outline-none transition-all duration-300 hover:border-gray-300 cursor-pointer appearance-none"
                         name="bloodGroup"
@@ -291,67 +300,53 @@ const Signup = () => {
                           required: "Blood group is required",
                         })}
                       >
-                        {" "}
-                        <option value="">Select your blood group</option>{" "}
-                        <option value="A+">A+</option>{" "}
-                        <option value="B+">B+</option>{" "}
-                        <option value="AB+">AB+</option>{" "}
-                        <option value="O+">O+</option>{" "}
-                        <option value="A-">A-</option>{" "}
-                        <option value="B-">B-</option>{" "}
-                        <option value="AB-">AB-</option>{" "}
-                        <option value="O-">O-</option>{" "}
-                      </select>{" "}
-                      {/* Custom dropdown arrow */}{" "}
+                        <option value="">Select your blood group</option>
+                        <option value="A+">A+</option>
+                        <option value="B+">B+</option>
+                        <option value="AB+">AB+</option>
+                        <option value="O+">O+</option>
+                        <option value="A-">A-</option>
+                        <option value="B-">B-</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O-">O-</option>
+                      </select>
+                      {/* Custom dropdown arrow */}
                       <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                        {" "}
                         <svg
                           className="w-5 h-5 text-gray-400"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          {" "}
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth="2"
                             d="M19 9l-7 7-7-7"
-                          />{" "}
-                        </svg>{" "}
-                      </div>{" "}
-                    </div>{" "}
+                          />
+                        </svg>
+                      </div>
+                    </div>
                     {errors.bloodGroup && (
                       <p className="text-red-500 text-sm mt-1">
-                        {" "}
-                        {errors.bloodGroup.message}{" "}
+                        {errors.bloodGroup.message}
                       </p>
-                    )}{" "}
+                    )}
                   </div>
 
                   {/* Bio */}
-                  {/* <div>
+                  <div>
                     <label className="block text-sm font-semibold mb-1">
                       Bio
                     </label>
-                    <textarea
-                      {...register("bio")}
-                      placeholder="Write something about yourself"
-                      className="w-full border-2 p-3 rounded-xl"
-                    />
-                  </div> */}
-
-                  {/* Last Donate */}
-                  <div>
-                    <label className="block text-sm font-semibold mb-1">
-                      Last Donation Date
-                    </label>
                     <div className="relative">
-                      <MdOutlineDateRange className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                      <input
-                        type="date"
-                        {...register("lastDonate")}
-                        className="w-full pl-12 border-2 p-3 rounded-xl"
+                      <ImProfile className="absolute left-3 top-1/3 -translate-y-1/2 text-gray-400" />
+                      <textarea
+                        {...register("bio", {
+                          required: "Location is required",
+                        })}
+                        placeholder="Write a short bio about yourself"
+                        className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-red-500 outline-none"
                       />
                     </div>
                   </div>
@@ -376,8 +371,78 @@ const Signup = () => {
                 </div>
               )}
 
-              {/* TAB 4: Security */}
+              {/* TAB 4: Additional Info */}
               {activeTab === 4 && (
+                <div className="space-y-5">
+                  {/* Last Donate */}
+                  <div>
+                    <label className="block text-sm font-semibold mb-1">
+                      Last Donation Date
+                    </label>
+                    <div className="relative">
+                      <MdOutlineDateRange className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                      <input
+                        type="date"
+                        {...register("lastDonate")}
+                        className="w-full pl-12 border-2 p-3 rounded-xl"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Donation Count */}
+                  <div>
+                    <label className="block text-sm font-semibold mb-1">
+                      Donation Count
+                    </label>
+                    <div className="relative">
+                      <TbHeartDiscount className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                      <input
+                        type="text"
+                        {...register("donations")}
+                        className="w-full pl-12 border-2 p-3 rounded-xl"
+                        placeholder="Number of donations were made"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Age */}
+                  <div>
+                    <label className="block text-sm font-semibold mb-1">
+                      Age
+                    </label>
+                    <div className="relative">
+                      <FaStreetView className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                      <input
+                        type="text"
+                        {...register("age")}
+                        className="w-full pl-12 border-2 p-3 rounded-xl"
+                        placeholder="Enter your age"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="flex gap-5 pt-3">
+                    <button
+                      type="button"
+                      onClick={prevTab}
+                      className="w-full border border-red-500 hover:border-red-600 text-red-500 hover:text-red-600 font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    >
+                      Prev
+                    </button>
+                    <button
+                      type="button"
+                      onClick={nextTab}
+                      className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 5: Security */}
+              {activeTab === 5 && (
                 <div className="space-y-5">
                   {/* Password */}
                   <div>

@@ -6,7 +6,7 @@ import {
   AiOutlineLock,
   AiFillHeart,
 } from "react-icons/ai";
-import { IoHeart, IoWaterOutline } from "react-icons/io5";
+import { IoMdHome } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 
@@ -42,7 +42,7 @@ const Login = () => {
 
       <div className="relative z-10 flex flex-col bg-red-50 bg-opacity-60 items-center justify-center min-h-screen px-4 py-12">
         {/* Logo/Header */}
-        <div className="mb-8 text-center transform hover:scale-105 transition-transform duration-300 cursor-pointer">
+        {/* <div className="mb-8 text-center transform hover:scale-105 transition-transform duration-300 cursor-pointer">
           <div className="flex items-center justify-center gap-2 mb-2">
             <div className="relative">
               <IoHeart className="text-red-500 animate-pulse" size={32} />
@@ -55,11 +55,15 @@ const Login = () => {
           <p className="text-gray-600 text-sm">
             Connecting lives, saving futures
           </p>
-        </div>
+        </div> */}
+        <Link to={'/'} className="flex justify-center items-center gap-2 text-2xl pb-5 text-red-500 font-bold">
+          <IoMdHome />
+          <p>Home</p>
+        </Link>
 
         {/* Login Card */}
         <div className="w-full max-w-lg">
-          <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 p-8 transform hover:scale-[1.02] transition-all duration-300">
+          <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 p-8">
             {/* Card header */}
             <div className="text-center mb-8">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-red-500 rounded-full mb-4 shadow-lg">
@@ -95,7 +99,7 @@ const Login = () => {
               </div>
 
               {/* Password Field */}
-              <div className="relative group">
+              <div className="relative group pb-3">
                 <label className="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-red-500">
                   Password
                 </label>
