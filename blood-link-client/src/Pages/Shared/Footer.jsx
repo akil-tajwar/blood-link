@@ -10,9 +10,9 @@ const Footer = () => {
             <h3 className="text-3xl font-semibold pb-2">Blood Link</h3>
           </Link>
           {/* <h3 className="pb-2 font-semibold">Social Links</h3> */}
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <Link href="/">
-              <div className="bg-white text-red-500 p-2 rounded-lg">
+              <div className="bg-white text-red-500 p-[5px] w-8 h-8 flex justify-center items-center rounded-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -25,7 +25,7 @@ const Footer = () => {
               </div>
             </Link>
             <Link href="/">
-              <div className="bg-white text-red-500 p-2 rounded-lg">
+            <div className="bg-white text-red-500 p-[5px] w-8 h-8 flex justify-center items-center rounded-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -38,7 +38,7 @@ const Footer = () => {
               </div>
             </Link>
             <Link href="/">
-              <div className="bg-white text-red-500 p-2 rounded-lg">
+            <div className="bg-white text-red-500 p-[5px] w-8 h-8 flex justify-center items-center rounded-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
