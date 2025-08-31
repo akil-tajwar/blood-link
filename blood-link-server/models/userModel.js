@@ -36,6 +36,12 @@ const userSchema = new mongoose.Schema(
     bio: {
       type: String,
     },
+    age: {
+      type: Number,
+    },
+    donations: {
+      type: Number,
+    },
     lastDonate: {
       type: String,
     },
@@ -44,7 +50,7 @@ const userSchema = new mongoose.Schema(
     },
     isAvailable: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   { timestamps: true }
